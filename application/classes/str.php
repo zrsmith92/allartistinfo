@@ -42,5 +42,13 @@ class Str
 	
 		return $d[$m - 1][$n - 1] ? $d[$m - 1][$n - 1] : 0;
 	}
+	
+    static function nl2p($string, $class = '') { 
+        $class_attr = ($class != '') ? ' class="' . $class . '"' : ''; 
+        return 
+              '<p' . $class_attr . '>' 
+            . preg_replace('#(<br\s*?/?>\s*?){2,}#', '</p>'."\n".'<p' . $class_attr . '>', nl2br($string, true)) 
+            . '</p>'; 
+    } 
 		
 }

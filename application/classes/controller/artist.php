@@ -11,18 +11,9 @@ class Controller_Artist extends Controller
 	{
 		$artist = Model_Artist::get_from_slug($slug);
 		
-		$sc = API_Soundcloud::user_search($artist->name);
-		$sc = $sc[0];
+		$scraper = new Scraper($artist->name);
 		
-		if ( Str::diff($artist->name, $sc->username) < 5 )
-		{
-			$sc_tracks = API_Soundcloud::get_artist_tracks($sc->id);
-			
-			foreach ( $sc_tracks as $track)
-			{
-				echo $track->title . "\n";
-			}
-		}
+		var_dump($scraper);
 		
 		$page = View::factory('artist/template');
 		$page->body = View::factory('artist/main');

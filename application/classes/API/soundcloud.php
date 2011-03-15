@@ -15,7 +15,19 @@ class API_Soundcloud
 	
 	public static function get_artist_tracks($id)
 	{
-		return API_Soundcloud::_request('users/' . $id . '/tracks.json');
+		$data = API_Soundcloud::_request('users/' . $id . '/tracks.json');
+		$tracks = array();
+		foreach ( $data as $track)
+		{
+			$tracks[] = array
+			(
+				'name'			=> $track->title,
+				'stream_url'	=> $track->stream_url,
+				'download_url'	=> $track->download_url
+			);
+		}
+		
+		return $tracks;
 	}
 	
 	protected static function _request($url, $params = array())
