@@ -2,6 +2,16 @@
 
 class Model_Artist extends ORM
 {
+	protected $_table_name = 'artists';
+	protected $_primary_key = 'id';
+	
+	protected $_table_columns = array(
+		'id'	=> array('type' => 'int', 'is_nullable' => false),
+		'name'	=> array('type' => 'string', 'is_nullable' => false),
+		'slug'	=> array('type' => 'string', 'is_nullable' => false)
+	);
+	
+	
 	static function search_for($name)
 	{
 		$result = DB::select()->from('artists')->where('name', 'LIKE', '%'.str_replace(' ', '%', $name).'%')->limit(1)->as_object()->execute();
