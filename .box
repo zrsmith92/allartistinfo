@@ -6,4 +6,8 @@ php_extensions:
     - pdo_mysql
     - json
     - xml
+	- mcrypt
+	- mysqli
+	- mysql
+	- mbstring
 php_default_timezone: US/central
