@@ -10,4 +10,5 @@ php_extensions:
 	- mysqli
 	- mysql
 	- mbstring
+
 php_default_timezone: US/central
