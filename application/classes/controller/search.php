@@ -1,20 +1,23 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Search extends Controller
+class Controller_Search extends Controller_Template
 {
 	function action_index()
 	{
 		$name = $this->request->post('artist');
-		$artist = new Model_Artist;
 		
-		if ( !$artist->search_for($name) )
+		if ( !$slug = Model_Artist::search_for($name) )
 		{
 			// TODO Bring to confirmation page to select correct artist name before saving. For now assuming name is correct.
+			$artist = new Model_Artist();
 			$artist->name = $name;
-			$artist->slug = Model_Artist::generate_slug();
+			$artist->slug = Model_Artist::generate_slug($name);
 			$artist->save();
+			
+			$slug = $artist->slug;
 		}
 		
-		$this->request->redirect('artist/'.$artist->slug);
+		$this->request->redirect('artist/' . $slug);
+
 	}
 }

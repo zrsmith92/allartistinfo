@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Artist extends Controller
+class Controller_Artist extends Controller_Template
 {
 	public function action_index()
 	{
@@ -9,18 +9,27 @@ class Controller_Artist extends Controller
 	
 	public function action_artist($slug)
 	{
-		$artist = Model_Artist::get_from_slug($slug);
+		$artist = new Model_Artist();
+		$artist->where('slug', '=', $slug)->find();
 		
-		$scraper = new Scraper($artist->name);
+		$cache = Cache::instance();
+		if ( !$scraper = $cache->get($artist->id, FALSE) )
+		{
+			$scraper = new Scraper($artist->name);
 		
-		var_dump($scraper);
+			if ( $scraper->name !== $artist->name ) {
+				$artist->update_name($scraper->name);
+			}
+
+			$cache->set($artist->id, $scraper, 3600);
+		}
 		
-		$page = View::factory('artist/template');
-		$page->body = View::factory('artist/main');
 		
-		$view = View::factory('template');
-		$view->body = $page;
+		$view = View::factory('artist/main');
+		$view->artist = $artist;
+		$view->artist_data = $scraper;
+		$this->template->scripts = array('libs/jquery.jplayer.min.js');
+		$this->template->content = $view;
 		
-		$this->response->body($view);
 	}
 }

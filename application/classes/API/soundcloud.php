@@ -22,8 +22,8 @@ class API_Soundcloud
 			$tracks[] = array
 			(
 				'name'			=> $track->title,
-				'stream_url'	=> $track->stream_url,
-				'download_url'	=> $track->download_url
+				'stream_url'	=> isset($track->stream_url) ? $track->stream_url . '?client_id=' . API_Soundcloud::$_client_id : NULL,
+				'download_url'	=> isset($track->download_url) ? $track->download_url : NULL
 			);
 		}
 		

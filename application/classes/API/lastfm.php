@@ -18,6 +18,28 @@ class API_Lastfm
 		
 		return $data->artist;
 	}
+
+	public static function get_shows($id)
+	{
+		$data = API_Lastfm::_request('', array(
+			'method'	=> 'artist.getEvents',
+			'mbid'		=> $id
+		));
+
+		$return = array();
+
+		if ( $data->events->total == 0 ) return $return;
+		foreach( $data->events->event as $event )
+		{
+			$return[] = array(
+				'title'		=> $event->title,
+				'with'		=> $event->artists->artist,
+				'location'	=> $event->venue->name . ' - ' . $event->venue->location->city . ', ' . $event->venue->location->country,
+				'date'		=> DateTime::createFromFormat('D, d M Y H:i:s', $event->startDate)
+			);
+		}
+		return $return;
+	}
 	
 	protected static function _request($url, $params = array())
 	{
@@ -25,7 +47,6 @@ class API_Lastfm
 		$params['api_key'] = API_Lastfm::$_api_key;
 		$params['format']  = 'json';
 		$url = $url . '?' . http_build_query($params);
-		echo $url;
 		$ch = curl_init($url);
 
 		$options = array
@@ -41,7 +62,6 @@ class API_Lastfm
 	}
 	protected static function _handle_errors($data)
 	{
-		echo $data;
 		return json_decode($data);
 	}
 }

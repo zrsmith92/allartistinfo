@@ -2,18 +2,14 @@
 
 class Model_Artist extends ORM
 {
-	public function search_for($name)
+	static function search_for($name)
 	{
 		$result = DB::select()->from('artists')->where('name', 'LIKE', '%'.str_replace(' ', '%', $name).'%')->limit(1)->as_object()->execute();
 		
 		if ( $result->count() == 0 )
 			return FALSE;
 		
-		$this->name = $result[0]->name;
-		$this->slug = $result[0]->slug;
-		$this->id = $result[0]->id;
-		
-		return TRUE;
+		return $result[0]->slug;
 	}
 	
 	static function generate_slug($name, $i = 0)
@@ -39,5 +35,10 @@ class Model_Artist extends ORM
 		$artist->last_updated = $result[0]->last_updated;
 		
 		return $artist;
+	}
+	
+	public function update_name($name)
+	{
+		DB::update('artists')->set(array('name'	=> $name))->where('id', '=', $this->id);
 	}
 }

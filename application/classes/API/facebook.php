@@ -8,7 +8,10 @@ class API_Facebook
 	
 	public static function user_search($user)
 	{
-		return API_Facebook::_request($user);
+		$data = API_Facebook::_request('search', array( 'q' => $user, 'type' => 'page' ));
+		if ( count($data->data) === 0 ) return FALSE;
+
+		return API_Facebook::_request($data->data[0]->id);
 	}
 	
 	public static function get_photos($id)

@@ -79,12 +79,288 @@ a:hover { color: #036; }
 /**
  * Primary styles
  *
- * Author: 
+ * Author: Zach Smith. Real gangsta
  */
+ 
+body {
+	background: #fff;
+	font: 14px Verdana, sans-serif;
+	color: #000;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: Georgia, "Times New Roman", serif;
+	font-weight: normal;
+	font-style: italic;	
+}
+h2 { font-size: 34px; }
+h3 { font-size: 30px; }
+h4 { font-size: 26px; }
+h5 { font-size: 22px; }
+h6 { font-size: 18px; }
 
+#artist-name { float: left; margin-right: 10px; }
+#artist-bio { margin-top: 15px; clear: both; }
 
+.artist .subtitle { float: right; }
 
+p { margin-bottom: 15px; }
 
+.subtitle { font: 18px Verdana, sans-serif; color: #8c4d6b; }
+
+a {
+	color: #8c4d6b;
+	outline: none;
+	text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+hr.gray-bar { background: rgba(155, 155, 155, 0.5); margin: 1px 0; height: 5px; border: none; }
+
+.icon {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-image: url(../img/sprites.png);
+	background-position: 0 -149px;
+	margin: 0 8px;
+}
+
+.icon.left { float: left; }
+.icon.right { float: right; }
+
+.icon.updates 	{ background-position: -21px -149px; }
+.icon.tracks	{ background-position: -42px -149px; }
+.icon.albums	{ background-position: -61px -149px; }
+.icon.photos	{ background-position: -81px -149px; }
+.icon.videos	{ background-position: -102px -149px; }
+.icon.shows		{ background-position: -122px -149px; }
+
+:hover > .icon.home,
+.active > .icon.home,
+.module-title > .icon.home		{ background-position: left -172px; }
+:hover > .icon.updates,
+.active > .icon.updates,
+.module-title > .icon.updates	{ background-position: -21px -172px; }
+:hover > .icon.tracks,
+.active > .icon.tracks,
+.module-title > .icon.tracks	{ background-position: -42px -172px; }
+:hover > .icon.albums,
+.active > .icon.albums,
+.module-title > .icon.albumes	{ background-position: -61px -172px; }
+:hover > .icon.photos,
+.active > .icon.photos,
+.module-title > .icon.photos	{ background-position: -81px -172px; }
+:hover > .icon.videos,
+.active > .icon.videos,
+.module-title > .icon.videos	{ background-position: -102px -172px; }
+:hover > .icon.shows,
+.active > .icon.shows,
+.module-title > .icon.shows		{ background-position: -122px -172px; }
+
+.module-title .icon { margin-top: 4px; }
+
+#main, header {
+	width: 940px;
+	margin: 0 auto;
+}
+#main { padding-bottom: 20px; }
+#container {
+	background: url(../img/bodyBG.jpg);
+	padding-top: 20px;
+}
+.home #main {
+	width: 660px;
+	margin: 0 auto;
+	margin-bottom: 100px;
+}
+
+header { margin-bottom: 20px; }
+#logo {
+	background: url(../img/sprites.png) no-repeat;
+	width: 459px;
+	height: 135px;
+}
+.js #logo-repeat {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	background: url(../img/title_repeat.png) repeat-x;
+	height: 135px;
+}
+
+.home #search-box {
+	background: #9b9b9b;
+	background: rgba(155,155,155, 0.5);
+	padding: 10px;
+	margin: 20px 0;
+	
+	border-bottom: #fff;
+	border-top: 1px solid rgb(100,100,100);
+	border-left: 1px solid rgb(150,150,150);
+	border-right: 1px solid rgb(200,200,200);
+	
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+	-o-box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+	#search-box input {
+		width: 555px;
+		padding: 5px;
+		padding: 0;
+		height: 75px;
+		border: none;
+		font-size: 65px;
+		line-height: 75px;
+		float: left;
+	}
+	
+	#search-box button {
+		background: #ccc;
+		border: none;
+		width: 75px;
+		height: 75px;
+		float: right;
+	}
+
+#page-content { 
+	width: 540px;
+	float: left;
+	margin-right: 10px;
+}
+#artist-photo {
+	width: 150px;
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+nav#artist-nav {
+	float: left;
+	border-right: 1px solid #ababab;
+	padding-right: 9px;
+	margin-right: 10px;
+	padding-top: 56px;
+}
+	nav#artist-nav li {
+		width: 140px;
+		background: #fff;
+		background: rgba(255,255,255,0.5);
+		margin-bottom: 5px;
+
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		-o-border-radius: 8px;
+		border-radius: 8px;
+	}
+	nav#artist-nav li:hover, nav#artist-nav li.active {
+		background: #c41e68;
+	}
+	nav#artist-nav li:last-child { margin-bottom: 0; }
+		nav#artist-nav li a {
+			color: #000;
+			text-align: right;
+			display: block;
+			padding: 5px 0;
+			font-size: 12px;
+		}
+		nav#artist-nav li:hover a, nav#artist-nav li.active a {
+			color: #fff;
+		}
+	
+#track-player {
+	width: 220px;
+	margin-left: 10px;
+	margin-top: 54px;
+	float: right;
+}
+	#track-player ul { margin: 0; }
+	#track-player ul li {
+		background: #fff;
+		background: rgba(255,255,255,0.5);
+		padding: 3px 3px 3px 10px;
+		list-style-position: inside;
+		color: #676767;
+	}
+	#track-player ul li:nth-child(2n) {
+		background: #eee0eb;
+		background: rgba(250, 226, 237, 0.5);
+	}
+	#track-player ul li.active { list-style-image: url(../img/list_style_play.png); }
+		#track-player ul li a { 
+			color: #676767; 
+			display: block;
+			white-space: nowrap;
+			overflow: hidden;
+			padding: 3px 0;
+		}
+		#track-player ul li.active a {
+			color: #000;
+			font-weight: bold;
+		}
+
+	#track-player .sorry {
+		padding: 3px;
+		font-weight: bold;
+		text-align: center;
+		background: #eee0eb;
+		background: rgba(250, 226, 237, 0.5);
+	}
+	
+
+	#track-player > div {
+		background: #eac1d3;
+		padding: 5px;
+	}
+	.no-js #track-player > div { display: none; }
+	#play-pause {
+		background-image: url(../img/sprites.png);
+		width: 50px; 
+		height: 50px;
+		background-position: -2px -198px;
+		margin-right: 3px;
+		float: left;
+	}
+	#play-pause.play { background-position: -52px -198px; }
+	#play-pause.pause { background-position: -2px -198px; }
+
+	#track-name {
+		overflow: hidden;
+		white-space: nowrap;
+		-webkit-animation: marquee s infinite;
+		-webkit-animation-timing-function: linear;
+	}
+
+	@-webkit-keyframes marquee {
+		from { text-indent: 0; }
+		to { text-indent: -100%; }
+	}
+
+	#track-player div p { margin: 0; }
+	#track-album, #track-year { color: #9e667e; }
+
+.module-title {
+	font-size: 14px;
+	background: url(../img/pink_grad.png) repeat-x;
+	color: #fff;
+	line-height: 25px;
+
+	-webkit-border-radius: 8px 8px 0 0;
+	-moz-border-radius: 8px 8px 0 0;
+	-o-border-radius: 8px 8px 0 0;
+	border-radius: 8px 8px 0 0;
+}
+
+footer {
+	background: #fff;
+	background: rgba(255,255,255, 0.9);
+	padding: 20px 0;
+}
+footer #footer-container { width: 960px; margin: 0 auto; }
 
 
 

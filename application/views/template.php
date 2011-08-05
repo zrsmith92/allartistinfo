@@ -19,23 +19,37 @@
 
 </head>
 
-<body>
-
+<body <?= HTML::body_classes(); ?>>
+	<div id='logo-repeat'></div>
   <div id="container">
     <header>
-
+		<a href='<?= url::base(); ?>'><h1 id='logo' class='ir'>All Artist Info.</h1></a>
     </header>
-    <div id="main">
-        <?php echo $body; ?>
+    <div id="main" class='clearfix'>
+        <?php if ( isset($content) )  echo $content; ?>
     </div><!-- /#main -->
-    <footer>
-        Copyright &copy;2011 <em>All Artist Info, Inc.</em> All Rights Reserved.
-    </footer>
+	<hr class='gray-bar'/>
   </div><!-- /#container -->
+  
+	
+    <footer><div id='footer-container'>
+        Copyright &copy;2011 <em>All Artist Info, Inc.</em> All Rights Reserved.
+    </div></footer>
+
+	<div id='audio'></div>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
   <script>window.jQuery || document.write('<script src="<?= url::base(); ?>inc/js/libs/jquery-1.5.1.min.js">\x3C/script>')</script>
+  <script>
+	site = {
+		baseURL: <?php echo url::base(); ?>
+	};
+  </script>
 
+
+  <?php if ( isset($scripts) ): foreach( $scripts as $script ) :?>
+  <script src='<?php echo url::base(); ?>inc/js/<?php echo $script; ?>'></script>
+  <?php endforeach; endif; ?>
   <!-- scripts concatenated and minified via ant build script-->
   <script src="<?= url::base(); ?>inc/js/plugins.js"></script>
   <script src="<?= url::base(); ?>inc/js/script.js"></script>
@@ -53,6 +67,5 @@
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
     s.parentNode.insertBefore(g,s)}(document,'script'));
   </script>
-
 </body>
 </html>

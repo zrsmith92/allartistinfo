@@ -5,13 +5,12 @@ class Scraper
 	public $name;
 	protected $_orig_name;
 	
-	public $genre;
-	public $description;
-	public $website_url;
-	public $myspace_name;
+	public	$genre;
+	public 	$description;
+	public 	$website_url;
+	public 	$myspace_name;
 	private $permalink;
-	public $city;
-	public $location;
+	public 	$city;
 	
 	public $updates	= array();
 	public $tracks	= array();
@@ -36,7 +35,7 @@ class Scraper
 		
 		$this->_orig_name = $artist ;
 		
-		//$this->_merge_data($this->scrape_lastfm());
+		$this->_merge_data($this->scrape_lastfm());
 		$this->_merge_data($this->scrape_soundcloud());
 		$this->_merge_data($this->scrape_facebook(), array('description'));
 	}
@@ -49,13 +48,16 @@ class Scraper
 		
 		if ( Str::diff($name, $lfm->name) < 5 )
 		{
-			$image = stripslashes($lfm->image[count($lfm->image) - 1]->text);
-			$return = array(
+			$image = stripslashes($lfm->image[count($lfm->image) - 1]->{"#text"});
+			$shows = API_Lastfm::get_shows($lfm->mbid);
+			return array(
 				'name' 			=> $lfm->name,
-				'description'	=> utf8_decode($lfm->bio->summary),
-				'photos'		=> array($image)
+				'description'	=> $lfm->bio->summary,
+				'photos'		=> array($image),
+				'shows'			=> $shows
 			);
 		}
+		return FALSE;
 	}	
 	
 	public function scrape_wikipedia()
@@ -84,7 +86,7 @@ class Scraper
 		}
 		
 		$fb = API_Facebook::user_search($name);
-		
+		//var_dump($fb);
 		if ( Str::diff($name, $fb->name) >= 5 ) return array();
 		
 		$sites = explode("\n", $fb->website);
@@ -94,9 +96,9 @@ class Scraper
 		return array(
 			'name'			=> $fb->name,
 			'location'		=> $fb->hometown,
-			'description'	=> Str::nl2p($fb->bio),
+			'description'	=> isset($fb->bio) ? Str::nl2p($fb->bio) : NULL,
 			'photos'		=> $photos,
-			'genre'			=> $fb->genre,
+			'genre'			=> isset($fb->genre) ? $fb->genre : NULL,
 			'website_url'	=> array_shift($sites)
 		);
 	}
@@ -135,7 +137,6 @@ class Scraper
 	
 	protected function _merge_data($data, $priority = array())
 	{
-		var_dump($data['name']);
 		foreach ( $data  as $key => $val )
 		{
 			if ( !property_exists('Scraper', $key) || empty($val) ) continue;			// If property doesn't exist in new vals or main class, skip it.
