@@ -2,19 +2,12 @@
 
 class Model_Artist extends ORM
 {
-	// protected $_db;
-	// 
-	// public function __construct()
-	// {
-	// 	if ( isset($_SERVER['PAGODA_DB_SOCKET']) )
-	// 	{
-	// 		$this->_db = 'pagoda';
-	// 	}
-	// 	else
-	// 	{
-	// 		$this->_db = 'default';
-	// 	}
-	// }
+	protected $_db;
+	
+	public function __construct()
+	{
+		$this->_db = PAGODA ? 'pagoda' : 'default';
+	}
 	
 	static function search_for($name)
 	{
