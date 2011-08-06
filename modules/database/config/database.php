@@ -42,7 +42,7 @@ return array
 			* boolean persistent use persistent connections?
 			*/
 			'dsn' => 'mysql:unix_socket=' . $_SERVER['PAGODA_DB_SOCKET']
-					 	. ';name=' . $_SERVER['PAGODA_DB_NAME'],
+					 	. ';dbname=' . $_SERVER['PAGODA_DB_NAME'],
 			'username' => $_SERVER['PAGODA_DB_USER'],
 			'password' => $_SERVER['PAGODA_DB_PASSWORD'],
 			'persistent' => FALSE,
