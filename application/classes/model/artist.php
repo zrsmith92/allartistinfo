@@ -2,6 +2,8 @@
 
 class Model_Artist extends ORM
 {
+	protected $_db = ( isset($_SERVER['PAGODA_DB_SOCKET']) ) ? 'pagoda' : 'default';
+	
 	static function search_for($name)
 	{
 		$result = DB::select()->from('artists')->where('name', 'LIKE', '%'.str_replace(' ', '%', $name).'%')->limit(1)->as_object()->execute();
