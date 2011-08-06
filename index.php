@@ -3,7 +3,7 @@
 /**
  *  PAGODA CONFIG SETUP
  */
-define('PAGODA', isset($_SERVER['PAGODA_SOCKET']));
+define('PAGODA', isset($_SERVER['PAGODA_DB_SOCKET']));
 define('PAGODA_DB_SOCKET', PAGODA ? $_SERVER['PAGODA_DB_SOCKET'] : '');
 define('PAGODA_DB_NAME', PAGODA ? $_SERVER['PAGODA_DB_NAME'] : '');
 define('PAGODA_DB_USER', PAGODA ? $_SERVER['PAGODA_DB_USER'] : '');
