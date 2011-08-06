@@ -41,12 +41,11 @@ return array
 			* string password database password
 			* boolean persistent use persistent connections?
 			*/
-			'dsn' => 'mysql:unix_socket=' . PAGODA_DB_SOCKET
-					 	. ';dbname=' . PAGODA_DB_NAME,
+			'dsn' => 'mysql:unix_socket=' . PAGODA_DB_SOCKET . ';dbname=' . PAGODA_DB_NAME,
 			'username' => PAGODA_DB_USER,
 			'password' => PAGODA_DB_PASSWORD,
 			'persistent' => FALSE,
-			),
+		),
 		/**
 		* The following extra options are available for PDO:
 		*
