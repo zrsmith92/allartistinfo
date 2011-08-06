@@ -3,6 +3,3 @@
 
 /application/logs/*
 /application/logs/**/*
-
-
-/modules/database/config/database.php
