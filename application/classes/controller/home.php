@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+echo Debug::vars($_SERVER);
 class Controller_Home extends Controller_Template
 {
 	public function action_index()
