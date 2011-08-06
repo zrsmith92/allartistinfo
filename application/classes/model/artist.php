@@ -2,7 +2,19 @@
 
 class Model_Artist extends ORM
 {
-	protected $_db = ( isset($_SERVER['PAGODA_DB_SOCKET']) ) ? 'pagoda' : 'default';
+	protected $_db;
+	
+	public function __construct()
+	{
+		if ( isset($_SERVER['PAGODA_DB_SOCKET']) )
+		{
+			$this->_db = 'pagoda';
+		}
+		else
+		{
+			$this->_db = 'default';
+		}
+	}
 	
 	static function search_for($name)
 	{
