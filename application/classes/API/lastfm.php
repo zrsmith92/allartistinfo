@@ -28,7 +28,7 @@ class API_Lastfm
 
 		$return = array();
 
-		if ( $data->events->total == 0 ) return $return;
+		if ( !isset($data->events) || $data->events->total == 0 ) return $return;
 		foreach( $data->events->event as $event )
 		{
 			$return[] = array(

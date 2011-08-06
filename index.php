@@ -1,6 +1,16 @@
 <?php
 
 /**
+ *  PAGODA CONFIG SETUP
+ */
+define('PAGODA', isset($_SERVER['PAGODA_SOCKET']));
+define('PAGODA_DB_SOCKET', PAGODA ? $_SERVER['PAGODA_DB_SOCKET'] : '');
+define('PAGODA_DB_NAME', PAGODA ? $_SERVER['PAGODA_DB_NAME'] : '');
+define('PAGODA_DB_USER', PAGODA ? $_SERVER['PAGODA_DB_USER'] : '');
+define('PAGODA_DB_PASSWORD', PAGODA ? $_SERVER['PAGODA_DB_PASSWORD'] : '');
+
+
+/**
  * The directory in which your application specific resources are located.
  * The application directory must contain the bootstrap.php file.
  *

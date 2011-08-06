@@ -20,8 +20,8 @@ return array
 			*/
 			'hostname' => 'localhost',
 			'database' => 'allartistinfo',
-			'username' => 'root',
-			'password' => FALSE,
+			'username' => 'allartistinfo',
+			'password' => 'allartistinfo',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
@@ -41,10 +41,10 @@ return array
 			* string password database password
 			* boolean persistent use persistent connections?
 			*/
-			'dsn' => 'mysql:unix_socket=' . $_SERVER['PAGODA_DB_SOCKET']
-					 	. ';dbname=' . $_SERVER['PAGODA_DB_NAME'],
-			'username' => $_SERVER['PAGODA_DB_USER'],
-			'password' => $_SERVER['PAGODA_DB_PASSWORD'],
+			'dsn' => 'mysql:unix_socket=' . PAGODA_DB_SOCKET
+					 	. ';dbname=' . PAGODA_DB_NAME,
+			'username' => PAGODA_DB_USER,
+			'password' => PAGODA_DB_PASSWORD,
 			'persistent' => FALSE,
 			),
 		/**
